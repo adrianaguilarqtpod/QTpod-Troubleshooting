@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +39,7 @@
 </head>
 <body>
   <header>
-    <a href="index.html">← Back to QTpod Troubleshooting List</a>
+    <a href="https://bbassi.sharepoint.com/:u:/r/sites/QTPODTeamSite/Shared%20Documents/Tech%20Support%20Troubleshooting/Troubleshooting/QTpod%20Main%20HTML/QTpod_main.html?csf=1&web=1&e=VB9D3v">← Back to QTpod Troubleshooting List</a>
     <h1>Change / Check Siteminder (Tail Number)</h1>
   </header>
   <div class="container">
@@ -64,6 +65,7 @@
       <div class="content">
         <ul class="steps" id="steps_list"></ul>
         <div class="actions" style="margin-top:10px;">
+          <button class="primary" id="next_step">Next step</button>
           <button id="mark_all">Mark all completed</button>
           <button class="outline" id="clear_all">Clear all</button>
         </div>
@@ -117,6 +119,7 @@
 
     const stepsList = document.getElementById('steps_list');
     const summaryEl = document.getElementById('summary');
+    const nextBtn = document.getElementById('next_step');
 
     const inputs = {
       ticket: document.getElementById('ticket'),
@@ -124,17 +127,47 @@
       phone: document.getElementById('phone')
     };
 
-    const state = { steps: STEPS.map((t, i) => ({ id: i+1, text: t, done:false, note:'' })), startedAt: new Date(), events: [] };
+    const state = { steps: STEPS.map((t, i) => ({ id: i+1, text: t, done:false, note:'' })), visibleCount: 1, startedAt: new Date(), events: [] };
 
     function log(type, message){ state.events.push({ts: new Date().toISOString(), type, message}); renderSummary(); }
 
+    function updateNextButton(){
+      if(!nextBtn) return;
+      const current = state.steps[state.visibleCount - 1];
+      const atEnd = state.visibleCount >= state.steps.length;
+      nextBtn.disabled = atEnd || !current || !current.done;
+      nextBtn.textContent = atEnd ? 'All steps revealed' : 'Next step';
+    }
+
+    function revealNextStep(){
+      const current = state.steps[state.visibleCount - 1];
+      if(!current || !current.done) return; // require current step to be checked
+      if(state.visibleCount < state.steps.length){
+        state.visibleCount += 1;
+        renderSteps();
+      }
+    }
+
+    if(nextBtn){ nextBtn.addEventListener('click', revealNextStep); }
+
     function renderSteps(){
       stepsList.innerHTML = '';
-      for(const s of state.steps){
+      for(const s of state.steps.slice(0, state.visibleCount)){
         const li = document.createElement('li'); li.className = 'step';
         const row = document.createElement('div'); row.className = 'row';
         const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = s.done;
-        cb.addEventListener('change', e => { s.done = e.target.checked; log('step', `${s.done ? 'Completed' : 'Unmarked'}: Step ${s.id} — ${s.text}`); });
+        cb.addEventListener('change', e => {
+          s.done = e.target.checked;
+          log('step', `${s.done ? 'Completed' : 'Unmarked'}: Step ${s.id} — ${s.text}`);
+
+          // Progressive reveal: when the current visible step is checked, show the next step.
+          if(s.done && s.id === state.visibleCount && state.visibleCount < state.steps.length){
+            state.visibleCount += 1;
+            renderSteps();
+          } else {
+            updateNextButton();
+          }
+        });
         const title = document.createElement('div'); title.className = 'step-title';
 
         const toggle = document.createElement('span'); toggle.className = 'img-toggle'; toggle.textContent = STEP_IMAGES[s.id] ? 'Show image' : '';
@@ -161,8 +194,9 @@
         }
 
         stepsList.appendChild(li);
-      }
-    }
+       }
+       updateNextButton();
+     }
 
     function renderSummary(){
       const ticket = inputs.ticket.value.trim();
@@ -200,8 +234,13 @@
     renderSteps(); renderSummary();
     document.getElementById('copy_summary').addEventListener('click', copySummary);
     document.getElementById('download_log').addEventListener('click', downloadLog);
-    document.getElementById('mark_all').addEventListener('click', () => { state.steps.forEach(s => s.done = true); log('bulk', 'Marked all steps as completed'); renderSteps(); });
-    document.getElementById('clear_all').addEventListener('click', () => { state.steps.forEach(s => {s.done = false; s.note='';}); log('bulk', 'Cleared all steps and notes'); renderSteps(); });
+    document.getElementById('mark_all').addEventListener('click', () => { state.steps.forEach(s => s.done = true); state.visibleCount = state.steps.length; log('bulk', 'Marked all steps as completed'); renderSteps(); });
+    document.getElementById('clear_all').addEventListener('click', () => {
+      state.steps.forEach(s => { s.done = false; s.note = ''; });
+      state.visibleCount = 1;
+      log('bulk', 'Cleared all steps and notes');
+      renderSteps();
+    }); log('bulk', 'Cleared all steps and notes'); renderSteps(); });
     document.getElementById('reset_form').addEventListener('click', () => { for(const k in inputs){ inputs[k].value=''; } log('form', 'Reset inputs'); renderSummary(); });
 
     for(const k in inputs){ inputs[k].addEventListener('input', renderSummary); }
