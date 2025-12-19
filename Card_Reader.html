@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QTpod — Troubleshooting</title>
+  <style>
+    :root { --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#9ca3af; --green:#22c55e; }
+
+    html, body { height:100%; }
+    body {
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      /* Center the wrapper vertically and horizontally */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* Center all content inside the wrapper */
+    .wrap {
+      text-align:center;
+      padding:40px 24px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    h1 { margin:0 0 8px; font-size:120px; color:var(--green); letter-spacing:0.5px; }
+    h2 { margin:0 0 20px; font-size:60px; color:#ffffff; font-weight:500; opacity:0.9; }
+
+    /* Center the grid block and keep a readable width */
+    .grid {
+      margin:12px auto 0;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      width:100%;
+      max-width:560px; /* centered column */
+    }
+
+    a, .item {
+      display:block;
+      padding:14px 18px;
+      border-radius:10px;
+      border:1px solid #1f2937;
+      background:#111827;
+      color:var(--text);
+      text-decoration:none;
+    }
+    a:hover { border-color:#334155; background:#0b1220; }
+
+    .disabled { color:var(--muted); opacity:0.6; cursor:not-allowed; }
+
+    .footer { margin-top:18px; color:var(--muted); font-size:12px; }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <h1>QTpod</h1>
+    <h2>Card Reader</h2>
+    <h2>
+      <span class="construction-icon">🚧</span>
+      Under Construction
+      <span class="construction-icon">🚧</span>
+    </h2>
+
+    <div class="grid">
+      <div class="item disabled">Card reader error</div>
+      <div class="item disabled">Card reader not responding</div>
+      <div class="item disabled">Other</div>
+          <a href="index.html">← Back to Troubleshooting List</a>
+    </div>
+
+    <h3>
+      <span class="construction-icon">🚧</span>
+      Under Construction
+      <span class="construction-icon">🚧</span>
+    </h3>
+    <p class="message">We’re working hard to bring you something amazing. Please check back soon!</p>
+
+    <div class="footer">Only Back to Troubleshooting List is active in this prototype.</div>
+  </div>
+
+</</body>
