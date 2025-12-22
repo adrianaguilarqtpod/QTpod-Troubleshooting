@@ -29,9 +29,56 @@
     a:hover { border-color:#334155; background:#0b1220; }
     .disabled { color:var(--muted); opacity:0.6; cursor:not-allowed; }
     .footer { margin-top:18px; color:var(--muted); font-size:12px; }
+
+    
+/* 3‑column layout: left image | main content | right image */
+.layout {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* images auto-size, center column fills */
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto; /* center the grid on the page */
+}
+
+/* Side images */
+.side-image {
+  display: block;
+  max-width: 220px;      /* adjust size to taste */
+  width: 100%;
+  height: auto;
+  border-radius: 12px;   /* optional */
+  border: 1px solid #1f2937;
+  background: #111827;
+  padding: 8px;          /* frame effect */
+}
+
+/* Optional responsive tweaks */
+@media (max-width: 900px) {
+  h1 { font-size: 64px; }
+  .grid { grid-template-columns: repeat(2, 1fr); width: 90vw; }
+  .side-image { max-width: 160px; }
+}
+@media (max-width: 600px) {
+  h1 { font-size: 44px; }
+  .grid { grid-template-columns: 1fr; width: 95vw; }
+  /* If you want to hide side images on phones, uncomment the next line: */
+  /* .side { display:none; } */
+}
   </style>
 </head>
 <body>
+  
+ <div class="layout">
+    <!-- Left image -->
+    <div class="side">
+      <picture>
+        images/QTPod_M4000.avif
+        <!-- Fallback if available; otherwise keep AVIF below as <img src> -->
+        <img class="side-image" src="images/QTPod_M4000.avif" alt="QTpod M4000sting main content -->
+
   <div class="wrap">
     <h1>QTpod</h1>
     <h2>Troubleshooting List</h2>
@@ -68,5 +115,11 @@
 
     <div class="footer">Only the Siteminder flow is active in this prototype.</div>
   </div>
+  
+    <!-- Right image (same picture) -->
+    <div class="side">
+      <picture>
+        <source srcset4000.avif
+        <img class="side-image" src="images/QTPod_M4000.avif" alt=">
 </body>
 </html>
