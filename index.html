@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,113 +7,66 @@
   <style>
     :root { --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#9ca3af; --green:#22c55e; }
     html,body { min-height:100%; }
-    body {
-      margin:0; background:var(--bg);
-      color:var(--text);
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
-    }
-    .wrap { text-align:center; padding:40px; }
+    body { margin:0; background:var(--bg); 
+           color:var(--text); 
+           font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif; display:flex; flex-direction: row; align-items:center; flex-wrap: wrap; align-items: center; justify-content:center; }
+    .wrap { text-align:center; padding:40px; } /* Corrected padding: 40px px -> 40px */
     h1 { margin:0 0 8px; font-size:100px; color:var(--green); letter-spacing:0.5px; }
     h2 { margin:0 0 20px; font-size:25px; color:#ffffff; font-weight:500; opacity:0.9; }
-
-    .grid {
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-      width: 80vw;
-      max-width: 1000px;
+    
+    /* Modified Grid Styles for 3 columns */
+    .grid { 
+        margin-top:12px; 
+        display:grid; 
+        grid-template-columns: repeat(3, 1fr); /* Creates three equal-width columns */
+        gap:10px; 
+        max-width: none; /* Removed max-width constraint for better use of space */
+        width: 80vw; /* Added width for better layout on larger screens */
+        max-width: 1000px; /* Optional: Set a new max-width for the grid container */
     }
+    
     a, .item { display:block; padding:14px 18px; border-radius:10px; border:1px solid #1f2937; background:#111827; color:var(--text); text-decoration:none; }
     a:hover { border-color:#334155; background:#0b1220; }
     .disabled { color:var(--muted); opacity:0.6; cursor:not-allowed; }
     .footer { margin-top:18px; color:var(--muted); font-size:12px; }
-
-    /* === Added styles === */
-    .layout {
-      display:grid;
-      grid-template-columns: auto 1fr auto;
-      align-items:center;
-      justify-items:center;
-      gap:20px;
-      padding:24px;
-      max-width:1200px;
-      margin:0 auto;
-    }
-    .side-image {
-      display:block;
-      max-width:220px;
-      width:100%;
-      height:auto;
-      border-radius:12px;
-      border:1px solid #1f2937;
-      background:#111827;
-      padding:8px;
-    }
-    @media (max-width: 900px) {
-      h1 { font-size:64px; }
-      .grid { grid-template-columns: repeat(2, 1fr); width: 90vw; }
-      .side-image { max-width:160px; }
-    }
-    @media (max-width: 600px) {
-      h1 { font-size:44px; }
-      .grid { grid-template-columns: 1fr; width: 95vw; }
-      /* .side { display:none; }  Uncomment if you want to hide side images on small screens */
-    }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <h1>QTpod</h1>
+    <h2>Troubleshooting List</h2>
 
-  <div class="layout">
-    <!-- Left image -->
-    <div class="side">
-      <picture>
-        <source srcset4000.avif
-        <img class="side-image" src="images/QTPod_M4000div>
-
-    <!-- Main content -->
-    <div class="wrap">
-      <h1>QTpod</h1>
-      <h2>Troubleshooting List</h2>
-
-      <div class="grid">
-        AMP.htmlAMP</a>
-        Axiomtek.htmlAxiomtek</a>
-        Cable_Wire.htmlCable/wire</a>
-        <a href="Card_mlCard Reader</a>
-        <div class="item disabled">Cellular Modem </div>
-        <div class="item disabled">Direct Eithernet </div>
-        <div class="item disabled">Dispenser </div>
-        <div class="item disabled">Display </div>
-        <div class="item disabled">DPI/RM </div>
-        <div class="item disabled">Install </div>
-        <div class="item disabled">JIRA </div>
-        <div class="item disabled">Keypad </div>
-        <div class="item disabled">MOXA </div>
-        <div class="item disabled">Multidisplay/HVR </div>
-        <div class="item disabled">Network Processor </div>
-        <div class="item disabled">No problem </div>
-        <div class="item disabled">Other </div>
-        <div class="item disabled">Part Order </div>
-        <div class="item disabled">PIE </div>
-        <div class="item disabled">Power Supply </div>
-        <div class="item disabled">Printer </div>
-        SiteMinder_sub_categories.htmlSiteMinder</a>
-        <div class="item disabled">Subscription </div>
-        <div class="item disabled">Transaction/Gateway </div>
-        <div class="item disabled">USB Hub </div>
-        <div class="item disabled">Weather event </div>
-        <div class="item disabled">WiFi </div>
-      </div>
-
-      <div class="footer">Only the Siteminder flow is active in this prototype.</div>
+    <div class="grid">
+      <div class="item disabled">AMP </div>
+      <div class="item disabled">Axiomtek </div>
+      <div class="item disabled">Cable/wire </div>
+      <div class="item disabled">Card Reader </div>
+      <div class="item disabled">Cellular Modem </div>
+      <div class="item disabled">Direct Eithernet </div>
+      <div class="item disabled">Dispenser </div>
+      <div class="item disabled">Display </div>
+      <div class="item disabled">DPI/RM </div>
+      <div class="item disabled">Install </div>
+      <div class="item disabled">JIRA </div>
+      <div class="item disabled">Keypad </div>
+      <div class="item disabled">MOXA </div>
+      <div class="item disabled">Multidisplay/HVR </div>
+      <div class="item disabled">Network Processor </div>
+      <div class="item disabled">No problem </div>
+      <div class="item disabled">Other </div>
+      <div class="item disabled">Part Order </div>
+      <div class="item disabled">PIE </div>
+      <div class="item disabled">Power Supply </div>
+      <div class="item disabled">Printer </div>
+      <a href="SiteMinder_sub_categories.html">SiteMinder</a>
+      <div class="item disabled">Subscription </div>
+      <div class="item disabled">Transaction/Gateway </div>
+      <div class="item disabled">USB Hub </div>
+      <div class="item disabled">Weather event </div>
+      <div class="item disabled">WiFi </div>
     </div>
 
-    <!-- Right image -->
-    <div class="side">
-      <picture>
-        <source srcset="images/Q        <img class="side-image" src="images/QTPod_M  </div>
+    <div class="footer">Only the Siteminder flow is active in this prototype.</div>
   </div>
-
 </body>
 </html>
