@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QTpod — Troubleshooting</title>
+  <style>
+    :root { --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#9ca3af; --green:#22c55e; }
+    html,body { height:100%; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif; display:flex; align-items:center; justify-content:center; }
+    .wrap { text-align:center; padding:40px 24px; }
+    h1 { margin:0 0 8px; font-size:120px; color:var(--green); letter-spacing:0.5px; }
+    h2 { margin:0 0 20px; font-size:60px; color:#ffffff; font-weight:500; opacity:0.9; }
+    .grid { margin-top:12px; display:grid; grid-template-columns: 1fr; gap:10px; max-width:560px; }
+    a, .item { display:block; padding:14px 18px; border-radius:10px; border:1px solid #1f2937; background:#111827; color:var(--text); text-decoration:none; }
+    a:hover { border-color:#334155; background:#0b1220; }
+    .disabled { color:var(--muted); opacity:0.6; cursor:not-allowed; }
+    .footer { margin-top:18px; color:var(--muted); font-size:12px; }
+
+    .back-button {
+  background: var(--green);
+  color: #000000;
+  font-weight: 600;
+  border: 1px solid #16a34a;
+}
+
+.back-button:hover {
+  background: #16a34a;
+  color: #000000;
+}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>QTpod</h1>
+    <h2>MOXA</h2>
+
+    <div class="grid">
+      <div class="item disabled">Terminal on desktop</div>
+      <a href="Account_Setup_and_Two_Factor_Auth.html">Account Setup & Two-Factor Authenitcation</a>
+      <div class="item disabled">USB/serial port dead</div>
+      <div class="item disabled">Recovery mode</div>
+      <div class="item disabled">Device not configured</div>
+      <div class="item disabled">Moxa dead/no lights</div>
+      <div class="item disabled">Other</div>
+      <a href="index.html" class="back-button">← Back to QTpod Troubleshooting List</a>
+    </div>
+
+    <div class="footer">Not all buttons are active</div>
+  </div>
+</body>
+</html>
